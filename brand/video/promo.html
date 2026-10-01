@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>EXO.AC Promo</title>
+<style>
+@font-face { font-family: Chakra; font-weight: 500; src: url(../fonts/chakra-500.woff2); }
+@font-face { font-family: Chakra; font-weight: 600; src: url(../fonts/chakra-600.woff2); }
+@font-face { font-family: Chakra; font-weight: 700; src: url(../fonts/chakra-700.woff2); }
+@font-face { font-family: Mono; font-weight: 500; src: url(../fonts/mono-500.woff2); }
+
+:root {
+  --bg: #07090d; --panel: #0e131b; --line: #1c2633;
+  --cyan: #00e5ff; --blue: #0077ff; --red: #ff2e4d;
+  --white: #eef3f8; --grey: #7d8894;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--bg); }
+body { font-family: Chakra, sans-serif; color: var(--white); position: relative; }
+
+/* ---------- fond ---------- */
+.grid {
+  position: absolute; inset: -80px;
+  background-image:
+    linear-gradient(var(--line) 2px, transparent 2px),
+    linear-gradient(90deg, var(--line) 2px, transparent 2px);
+  background-size: 80px 80px; opacity: .45;
+  animation: gridMove 30s linear both;
+}
+@keyframes gridMove { to { transform: translateY(80px) translateY(240px); } }
+.glow {
+  position: absolute; width: 1400px; height: 1400px; left: -160px; top: 260px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,119,255,.22), transparent 60%);
+  animation: glowShift 30s ease-in-out both;
+}
+@keyframes glowShift {
+  0% { background: radial-gradient(circle, rgba(255,46,77,.25), transparent 60%); }
+  12% { background: radial-gradient(circle, rgba(255,46,77,.25), transparent 60%); }
+  13% { background: radial-gradient(circle, rgba(0,119,255,.25), transparent 60%); }
+  100% { background: radial-gradient(circle, rgba(0,229,255,.18), transparent 60%); }
+}
+.vignette { position: absolute; inset: 0; background: radial-gradient(ellipse at center, transparent 45%, rgba(0,0,0,.75)); }
+.scan {
+  position: absolute; left: 0; right: 0; height: 220px;
+  background: linear-gradient(transparent, rgba(0,229,255,.07), transparent);
+  animation: scan 3s linear infinite;
+}
+@keyframes scan { from { transform: translateY(-220px); } to { transform: translateY(1920px); } }
+.flash { position: absolute; inset: 0; background: var(--white); opacity: 0; pointer-events: none; }
+.flash.f1 { animation: flash .35s 3.55s both; }
+.flash.f2 { animation: flash .35s 7.0s both; }
+.flash.f3 { animation: flash .35s 19.5s both; }
+.flash.f4 { animation: flash .35s 25.5s both; }
+@keyframes flash { 0% { opacity: 0; } 15% { opacity: .55; } 100% { opacity: 0; } }
+
+/* ---------- utilitaires ---------- */
+.scene { position: absolute; inset: 0; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
+@keyframes slideUp { from { opacity: 0; transform: translateY(60px); } to { opacity: 1; transform: none; } }
+@keyframes slideLeft { from { opacity: 0; transform: translateX(-120px); } to { opacity: 1; transform: none; } }
+@keyframes pop { 0% { opacity: 0; transform: scale(2.2) rotate(-8deg); } 60% { opacity: 1; transform: scale(.92) rotate(-8deg); } 100% { opacity: 1; transform: scale(1) rotate(-8deg); } }
+@keyframes glitch {
+  0%,100% { transform: none; text-shadow: none; }
+  10% { transform: translate(-8px, 2px); text-shadow: 6px 0 var(--cyan), -6px 0 var(--red); }
+  20% { transform: translate(6px, -3px); text-shadow: -6px 0 var(--cyan), 6px 0 var(--red); }
+  30% { transform: none; text-shadow: none; }
+  70% { transform: none; }
+  75% { transform: translate(10px, 0); text-shadow: 8px 0 var(--cyan), -8px 0 var(--red); }
+  80% { transform: none; text-shadow: none; }
+}
+
+/* ---------- scène 1 : le problème ---------- */
+.s1 { animation: fadeOut .3s 3.45s forwards; }
+.s1 .title { position: absolute; left: 90px; top: 300px; }
+.s1 .l { font-weight: 700; line-height: .95; display: block; }
+.s1 .a { font-size: 120px; animation: slideLeft .35s .1s both; }
+.s1 .b { font-size: 190px; color: var(--cyan); animation: slideLeft .35s .35s both; }
+.s1 .c { font-size: 130px; color: var(--red); margin-top: 20px;
+         animation: slideLeft .3s .8s both, glitch 1.2s 1.1s 2 both; }
+.chat { position: absolute; left: 90px; right: 90px; top: 1000px; font-family: Mono; font-size: 34px; }
+.chat div {
+  padding: 18px 26px; margin-bottom: 18px; border-left: 6px solid var(--red);
+  background: rgba(255,46,77,.1); color: #ffb3bf; opacity: 0;
+}
+.chat div:nth-child(1) { animation: slideUp .25s 1.4s both; }
+.chat div:nth-child(2) { animation: slideUp .25s 1.8s both; }
+.chat div:nth-child(3) { animation: slideUp .25s 2.2s both; }
+.chat div:nth-child(4) { animation: slideUp .25s 2.6s both; }
+.chat b { color: var(--red); }
+
+/* ---------- scène 2 : le logo ---------- */
+.s2 { opacity: 0; animation: fadeIn .2s 3.6s both, fadeOut .3s 6.75s forwards; }
+.mark { position: absolute; left: 340px; top: 470px; width: 400px; height: 400px; }
+.mark .shield { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw .9s 3.7s cubic-bezier(.6,0,.2,1) forwards; }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+.mark .x1, .mark .x2 { opacity: 0; animation: fadeIn .15s 4.45s both; }
+.mark .x3 { opacity: 0; animation: cut .5s 4.75s both; }
+@keyframes cut {
+  0% { opacity: 1; stroke: var(--white); transform: none; }
+  40% { opacity: 1; stroke: var(--red); transform: none; }
+  100% { opacity: 1; stroke: var(--red); transform: translate(-10px, 10px); }
+}
+.word { position: absolute; left: 0; right: 0; top: 940px; text-align: center; }
+.word .exo { font-size: 200px; font-weight: 700; letter-spacing: 8px; line-height: 1; animation: slideUp .4s 5.0s both; }
+.word .exo span { color: var(--cyan); }
+.word .sub { font-size: 44px; font-weight: 600; letter-spacing: 18px; color: var(--grey); margin-top: 24px; animation: fadeIn .4s 5.3s both; }
+.word .tag { font-size: 64px; font-weight: 700; margin-top: 110px; animation: slideUp .4s 5.75s both; }
+.word .tag span { color: var(--red); }
+
+/* ---------- scène 3 : les détections ---------- */
+.s3 { opacity: 0; animation: fadeIn .2s 7.05s both, fadeOut .3s 19.45s forwards; }
+.s3 h2 { position: absolute; left: 90px; top: 240px; font-size: 92px; font-weight: 700; line-height: 1;
+         animation: slideLeft .35s 7.1s both; }
+.s3 h2 span { color: var(--cyan); }
+.s3 .kicker { position: absolute; left: 94px; top: 200px; font-family: Mono; font-size: 30px; color: var(--cyan);
+              letter-spacing: 4px; animation: fadeIn .3s 7.1s both; }
+.list { position: absolute; left: 90px; right: 90px; top: 430px; }
+.item {
+  position: relative; height: 196px; margin-bottom: 28px; padding: 34px 40px 0 44px;
+  background: var(--panel); border: 2px solid var(--line); border-left: 8px solid var(--cyan); opacity: 0;
+}
+.item .t { font-size: 56px; font-weight: 700; line-height: 1.05; }
+.item .d { font-family: Mono; font-size: 30px; color: var(--grey); margin-top: 16px; }
+.item .stamp {
+  position: absolute; right: 36px; top: 46px; font-size: 44px; font-weight: 700; letter-spacing: 4px;
+  color: var(--red); border: 5px solid var(--red); padding: 4px 22px; opacity: 0;
+}
+.item:nth-child(1) { animation: slideLeft .35s 7.7s both; }
+.item:nth-child(2) { animation: slideLeft .35s 9.9s both; }
+.item:nth-child(3) { animation: slideLeft .35s 12.1s both; }
+.item:nth-child(4) { animation: slideLeft .35s 14.3s both; }
+.item:nth-child(5) { animation: slideLeft .35s 16.5s both; }
+.item:nth-child(1) .stamp { animation: pop .3s 8.5s both; }
+.item:nth-child(2) .stamp { animation: pop .3s 10.7s both; }
+.item:nth-child(3) .stamp { animation: pop .3s 12.9s both; }
+.item:nth-child(4) .stamp { animation: pop .3s 15.1s both; }
+.item:nth-child(5) .stamp { animation: pop .3s 17.3s both; }
+
+/* ---------- scène 4 : le panel ---------- */
+.s4 { opacity: 0; animation: fadeIn .2s 19.55s both, fadeOut .3s 25.45s forwards; }
+.s4 h2 { position: absolute; left: 90px; top: 240px; font-size: 92px; font-weight: 700; line-height: 1;
+         animation: slideLeft .35s 19.6s both; }
+.s4 h2 span { color: var(--cyan); }
+.win {
+  position: absolute; left: 90px; right: 90px; top: 470px; height: 668px;
+  background: var(--panel); border: 2px solid var(--line); border-radius: 18px; overflow: hidden;
+  animation: slideUp .45s 19.9s both;
+}
+.win .bar { height: 70px; border-bottom: 2px solid var(--line); display: flex; align-items: center; padding: 0 28px; gap: 14px; }
+.win .bar i { width: 18px; height: 18px; border-radius: 50%; background: var(--line); }
+.win .bar em { font-style: normal; font-family: Mono; font-size: 26px; color: var(--grey); margin-left: 16px; }
+.win .live { margin-left: auto; font-family: Mono; font-size: 26px; color: var(--red); animation: blink 1s steps(2) infinite; }
+@keyframes blink { 50% { opacity: .2; } }
+.row {
+  display: grid; grid-template-columns: 150px 1fr 190px; align-items: center;
+  height: 112px; padding: 0 30px; border-bottom: 2px solid var(--line); font-family: Mono; font-size: 30px; opacity: 0;
+}
+.row .h { color: var(--grey); }
+.row .r { color: var(--white); }
+.row .r small { display: block; color: var(--grey); font-size: 24px; margin-top: 6px; }
+.row .s { color: var(--red); text-align: right; font-family: Chakra; font-weight: 700; font-size: 34px; letter-spacing: 3px; }
+.row:nth-of-type(1) { animation: slideUp .3s 20.4s both; }
+.row:nth-of-type(2) { animation: slideUp .3s 20.9s both; }
+.row:nth-of-type(3) { animation: slideUp .3s 21.4s both; }
+.row:nth-of-type(4) { animation: slideUp .3s 21.9s both; }
+.row:nth-of-type(5) { animation: slideUp .3s 22.4s both; }
+.perks { position: absolute; left: 90px; right: 90px; top: 1200px; }
+.perk { font-size: 54px; font-weight: 700; margin-bottom: 26px; display: flex; align-items: center; gap: 28px; opacity: 0; }
+.perk::before { content: ""; width: 26px; height: 26px; background: var(--cyan); transform: rotate(45deg); flex: none; }
+.perk:nth-child(1) { animation: slideLeft .3s 22.9s both; }
+.perk:nth-child(2) { animation: slideLeft .3s 23.5s both; }
+.perk:nth-child(3) { animation: slideLeft .3s 24.1s both; }
+
+/* ---------- scène 5 : appel à l'action ---------- */
+.s5 { opacity: 0; animation: fadeIn .25s 25.55s both; }
+.s5 .mark { top: 380px; animation: logoIn .6s 25.6s both; }
+@keyframes logoIn { from { opacity: 0; transform: scale(.6); } to { opacity: 1; transform: none; } }
+.s5 .word { top: 850px; }
+.s5 .word .exo { animation: slideUp .4s 25.9s both; }
+.s5 .word .sub { animation: fadeIn .4s 26.2s both; }
+.cta1 { position: absolute; left: 0; right: 0; top: 1240px; text-align: center; font-size: 76px; font-weight: 700; line-height: 1.1;
+        animation: slideUp .4s 26.7s both; }
+.cta1 span { color: var(--cyan); }
+.cta2 {
+  position: absolute; left: 50%; top: 1440px; transform: translateX(-50%);
+  font-size: 50px; font-weight: 700; letter-spacing: 6px; color: var(--bg); background: var(--cyan);
+  padding: 22px 54px; animation: fadeIn .3s 27.4s both, pulse 1s 27.7s ease-in-out infinite;
+}
+@keyframes pulse { 50% { box-shadow: 0 0 0 18px rgba(0,229,255,.18); } }
+</style>
+</head>
+<body>
+<div class="grid"></div>
+<div class="glow"></div>
+<div class="scan"></div>
+
+<!-- 1. Le problème -->
+<section class="scene s1">
+  <div class="title">
+    <span class="l a">TON SERVEUR</span>
+    <span class="l b">FIVEM</span>
+    <span class="l c">EST INFESTÉ ?</span>
+  </div>
+  <div class="chat">
+    <div><b>[!]</b> Joueur téléporté sur le toit du Maze Bank</div>
+    <div><b>[!]</b> 40 véhicules spawnés en 2 secondes</div>
+    <div><b>[!]</b> Joueur invincible depuis 12 min</div>
+    <div><b>[!]</b> Tous les joueurs ont été tués</div>
+  </div>
+</section>
+
+<!-- 2. Le logo -->
+<section class="scene s2">
+  <svg class="mark" viewBox="0 0 200 200">
+    <defs><linearGradient id="g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#00e5ff"/><stop offset="1" stop-color="#0077ff"/></linearGradient></defs>
+    <path class="shield" pathLength="1" d="M100 8 L180 46 L180 112 C180 150 146 178 100 194 C54 178 20 150 20 112 L20 46 Z" fill="none" stroke="url(#g1)" stroke-width="10" stroke-linejoin="round"/>
+    <path class="x1" d="M62 58 L138 142" stroke="#eef3f8" stroke-width="18" stroke-linecap="square"/>
+    <path class="x2" d="M138 58 L114 85" stroke="#eef3f8" stroke-width="18" stroke-linecap="square"/>
+    <path class="x3" d="M84 118 L62 142" stroke="#ff2e4d" stroke-width="18" stroke-linecap="square"/>
+  </svg>
+  <div class="word">
+    <div class="exo">EXO<span>.</span>AC</div>
+    <div class="sub">ANTICHEAT · FIVEM</div>
+    <div class="tag">Le cheat s'arrête <span>ici.</span></div>
+  </div>
+</section>
+
+<!-- 3. Les détections -->
+<section class="scene s3">
+  <div class="kicker">// EXO.AC</div>
+  <h2>CE QU'IL <span>DÉTECTE</span></h2>
+  <div class="list">
+    <div class="item"><div class="t">Mod menus</div><div class="d">exécuteurs Lua, injections</div><div class="stamp">BAN</div></div>
+    <div class="item"><div class="t">Noclip &amp; TP</div><div class="d">déplacements impossibles</div><div class="stamp">BAN</div></div>
+    <div class="item"><div class="t">God mode</div><div class="d">santé et armure infinies</div><div class="stamp">BAN</div></div>
+    <div class="item"><div class="t">Spawn abusif</div><div class="d">armes, véhicules, objets</div><div class="stamp">BAN</div></div>
+    <div class="item"><div class="t">Triggers</div><div class="d">events serveur détournés</div><div class="stamp">BAN</div></div>
+  </div>
+</section>
+
+<!-- 4. Le panel -->
+<section class="scene s4">
+  <h2>TOUT DANS TON<br><span>PANEL</span></h2>
+  <div class="win">
+    <header class="bar"><i></i><i></i><i></i><em>exo_ac_panel</em><span class="live">● LIVE</span></header>
+    <div class="row"><span class="h">21:42</span><span class="r">Joueur #214<small>Noclip</small></span><span class="s">BANNI</span></div>
+    <div class="row"><span class="h">21:39</span><span class="r">Joueur #87<small>Mod menu</small></span><span class="s">BANNI</span></div>
+    <div class="row"><span class="h">21:31</span><span class="r">Joueur #153<small>Spawn véhicules</small></span><span class="s">BANNI</span></div>
+    <div class="row"><span class="h">21:20</span><span class="r">Joueur #42<small>God mode</small></span><span class="s">BANNI</span></div>
+    <div class="row"><span class="h">21:08</span><span class="r">Joueur #301<small>Trigger event</small></span><span class="s">BANNI</span></div>
+  </div>
+  <div class="perks">
+    <div class="perk">Bans automatiques</div>
+    <div class="perk">Logs de chaque détection</div>
+    <div class="perk">Panel web de gestion</div>
+  </div>
+</section>
+
+<!-- 5. Appel à l'action -->
+<section class="scene s5">
+  <svg class="mark" viewBox="0 0 200 200">
+    <defs><linearGradient id="g2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#00e5ff"/><stop offset="1" stop-color="#0077ff"/></linearGradient></defs>
+    <path d="M100 8 L180 46 L180 112 C180 150 146 178 100 194 C54 178 20 150 20 112 L20 46 Z" fill="none" stroke="url(#g2)" stroke-width="10" stroke-linejoin="round"/>
+    <path d="M62 58 L138 142" stroke="#eef3f8" stroke-width="18" stroke-linecap="square"/>
+    <path d="M138 58 L114 85" stroke="#eef3f8" stroke-width="18" stroke-linecap="square"/>
+    <path d="M84 118 L62 142" stroke="#ff2e4d" stroke-width="18" stroke-linecap="square"/>
+  </svg>
+  <div class="word">
+    <div class="exo">EXO<span>.</span>AC</div>
+    <div class="sub">ANTICHEAT · FIVEM</div>
+  </div>
+  <div class="cta1">Protège ton serveur.<br><span>Avant le prochain raid.</span></div>
+  <div class="cta2">LIEN EN BIO</div>
+</section>
+
+<div class="vignette"></div>
+<div class="flash f1"></div><div class="flash f2"></div><div class="flash f3"></div><div class="flash f4"></div>
+</body>
+</html>
