@@ -1,0 +1,32 @@
+{
+  "_aide": "Dépose tes clips dans ce dossier avec ces noms (mp4, n'importe quelle taille, horizontal ou vertical). 'start' = seconde du clip où commencer. Les temps 'from'/'to' sont calés sur le beat : ne les change pas sans changer la musique.",
+  "segments": [
+    {
+      "from": 0.0, "to": 3.5,
+      "clips": [{"file": "ambiance1.mp4", "start": 0}, {"file": "ambiance2.mp4", "start": 0}],
+      "caption": "Ton serveur FiveM\nest infesté ?"
+    },
+    {
+      "from": 3.5, "to": 7.0,
+      "clips": [{"file": "cheat.mp4", "start": 0}],
+      "caption": "Mod menu. Noclip.\nGod mode."
+    },
+    {
+      "from": 7.0, "to": 12.0,
+      "clips": [{"file": "ban.mp4", "start": 0}],
+      "caption": "EXO.AC le détecte..."
+    },
+    {
+      "from": 12.0, "to": 19.5,
+      "clips": [{"file": "ban.mp4", "start": 5}],
+      "caption": "BAN.",
+      "big": true
+    },
+    {
+      "from": 19.5, "to": 25.5,
+      "clips": [{"file": "panel.mp4", "start": 0}],
+      "caption": "Tout est loggé\ndans ton panel"
+    }
+  ],
+  "fin": {"from": 25.5, "to": 30.0}
+}
