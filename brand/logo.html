@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&display=block" rel="stylesheet">
+<style>
+  :root { --bg:#07090d; --cyan:#00e5ff; --red:#ff2e4d; --white:#eef3f8; --grey:#7d8894; }
+  html,body { margin:0; background:var(--bg); }
+  body { width:1200px; height:600px; display:flex; align-items:center; justify-content:center; gap:56px; font-family:'Chakra Petch',sans-serif; }
+  .word { display:flex; flex-direction:column; }
+  .exo { color:var(--white); font-size:150px; font-weight:700; line-height:.85; letter-spacing:6px; }
+  .exo span { color:var(--cyan); }
+  .sub { color:var(--grey); font-size:30px; font-weight:600; letter-spacing:15px; margin-top:18px; }
+</style>
+</head>
+<body>
+<svg id="mark" width="300" height="300" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#00e5ff"/><stop offset="1" stop-color="#0077ff"/>
+    </linearGradient>
+  </defs>
+  <!-- bouclier hexagonal -->
+  <path d="M100 8 L180 46 L180 112 C180 150 146 178 100 194 C54 178 20 150 20 112 L20 46 Z"
+        fill="none" stroke="url(#g)" stroke-width="10" stroke-linejoin="round"/>
+  <!-- X : une branche pleine (le serveur), une branche coupée (le cheat neutralisé) -->
+  <path d="M62 58 L138 142" stroke="#eef3f8" stroke-width="18" stroke-linecap="square"/>
+  <path d="M138 58 L114 85" stroke="#eef3f8" stroke-width="18" stroke-linecap="square"/>
+  <path d="M84 118 L62 142" stroke="#ff2e4d" stroke-width="18" stroke-linecap="square"/>
+</svg>
+<div class="word">
+  <div class="exo">EXO<span>.</span>AC</div>
+  <div class="sub">ANTICHEAT · FIVEM</div>
+</div>
+</body>
+</html>
